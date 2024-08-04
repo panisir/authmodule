@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -26,6 +27,8 @@ public class User implements UserDetails {
     private Integer id;
     private String firstname;
     private String lastname;
+
+    @Column(unique = true)
     private String email;
     private String password;
 

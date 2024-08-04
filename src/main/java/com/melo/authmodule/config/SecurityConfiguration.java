@@ -3,6 +3,7 @@ package com.melo.authmodule.config;
 import com.melo.authmodule.user.Permission;
 import com.melo.authmodule.user.Role;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -31,6 +32,9 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @RequiredArgsConstructor
 @EnableMethodSecurity
 public class SecurityConfiguration {
+
+    @Value("${application.security.allowed-origins}")
+    private String allowedOrigins;
 
     private static final String[] WHITE_LIST_URL = {"/api/v1/auth/**",
             "/v2/api-docs",
@@ -81,11 +85,7 @@ public class SecurityConfiguration {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(
-                Arrays.asList(
-                        "http://localhost:3000",
-                        "http://46.101.158.97:3000",
-                        "http://167.99.253.167:3000")); // Customize as needed
+        configuration.setAllowedOrigins(Arrays.asList(allowedOrigins.split(","))); // Customize as needed
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
         configuration.setAllowCredentials(true);

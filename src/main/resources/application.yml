@@ -21,3 +21,7 @@ application:
       expiration: 86400000 # a day
       refresh-token:
         expiration: 604800000 # 7 days
+    allowed-origins: "http://localhost:8081,http://localhost:3000,http://46.101.158.97:3000,http://46.101.158.97:8081"
+
+server:
+  port: 8080

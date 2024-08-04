@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the executable JAR file into the container
-COPY target/security-0.0.1-SNAPSHOT.jar /app/security-application.jar
+COPY target/authmodule-0.0.1-SNAPSHOT.jar /app/security-application.jar
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080

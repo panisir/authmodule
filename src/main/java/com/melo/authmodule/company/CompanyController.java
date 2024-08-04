@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/companies")
 public class CompanyController {
 
+    private static final String NAME = "name";
+
     private final CompanyService companyService;
 
     @Autowired
